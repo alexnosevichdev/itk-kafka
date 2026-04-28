@@ -1,0 +1,23 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: shipping-service
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      properties:
+        spring.json.add.type.headers: false
+    consumer:
+      group-id: shipping-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+kafka:
+  partitions: 3
+logging:
+  level:
+    com.alexnosevichdev: DEBUG
+    org.apache.kafka: WARN
